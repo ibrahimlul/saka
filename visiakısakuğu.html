@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ürün Detayları</title>
+</head>
+<body>
+  <img src="https://www.nskbathandkitchen.com/fotolar/382x306max/6240d516eef54.jpg" alt="Nsk Visia Plus Kuğu Lavabo Bataryası">
+  <h1>Ürün Adı: Nsk Visia Plus Kuğu Lavabo Bataryası</h1>
+  <p>Asıl Fiyat: <s>3080</s> TL</p>
+  <p>İndirimli Fiyat: <span id="indirimliFiyat"></span> TL</p>
+  <p>KDV Dahil Fiyat: <span id="kdvDahilFiyat"></span> TL</p>
+  <input type="number" id="iskonto" placeholder="İskonto Yüzdesi (%)">
+  <button onclick="hesapla()">Hesapla</button>
+
+  <script>
+    function hesapla() {
+      let asilFiyat = 3080; // Asıl fiyatı doğrudan tanımlıyoruz
+      let iskontoOrani = parseFloat(document.getElementById("iskonto").value);
+
+      // Giriş kontrolü
+      if (isNaN(iskontoOrani)) {
+        alert("Lütfen geçerli bir iskonto yüzdesi girin.");
+        return;
+      }
+
+      iskontoOrani /= 100; // Yüzdelik değere çevirme
+      let indirimTutari = asilFiyat * iskontoOrani;
+      let yeniFiyat = asilFiyat - indirimTutari;
+      let kdv = yeniFiyat * 0.20; // %20 KDV hesaplama
+      let kdvDahilFiyat = yeniFiyat + kdv; // KDV dahil fiyat
+
+      document.getElementById("indirimliFiyat").textContent = yeniFiyat.toFixed(2) + " TL";
+      document.getElementById("kdvDahilFiyat").textContent = kdvDahilFiyat.toFixed(2) + " TL"; // KDV dahil fiyatı göster
+    }
+  </script>
+</body>
+</html>
